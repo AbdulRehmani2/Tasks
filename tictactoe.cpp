@@ -6,7 +6,6 @@ using namespace std;
 void displayBoard(char board[][3]);
 bool check(char board[][3], char move);
 void playMove(char board[][3], char move);
-void gotoxy(int x, int y);
 
 int main()
 {
@@ -21,20 +20,20 @@ int main()
         playMove(board, 'X');
         system("cls");
         displayBoard(board);
-        if(check(board, 'X') == true)
+        if (check(board, 'X') == true)
         {
             cout << "Player 1 wins" << endl;
             getch();
             break;
         }
-        if(index == 5)
+        if (index == 5)
         {
             cout << "Draw";
             break;
         }
         cout << "Player Two's turn" << endl;
         playMove(board, 'O');
-        if(check(board, 'O') == true)
+        if (check(board, 'O') == true)
         {
             cout << "Player 2 wins" << endl;
             getch();
@@ -46,7 +45,9 @@ int main()
 
 void displayBoard(char board[][3])
 {
-    cout << endl << endl << endl;
+    cout << endl
+         << endl
+         << endl;
     for (int i = 0; i < 3; i++)
     {
         cout << "                                                   ";
@@ -65,7 +66,8 @@ void displayBoard(char board[][3])
             continue;
         }
         cout << endl
-             << "                                                    _ _ _ _ _ _ _" << endl << endl;
+             << "                                                    _ _ _ _ _ _ _" << endl
+             << endl;
     }
 }
 
@@ -74,9 +76,17 @@ void playMove(char board[][3], char move)
     cout << "Enter the x-coordinates : ";
     int i, j;
     cin >> i;
+    if (i > 3 || i < 1)
+    {
+        playMove(board, move);
+    }
     cout << "Enter the y-coordinates : ";
     cin >> j;
-    if (board[i-1][j-1] == 'X' || board[i-1][j-1] == 'O')
+    if (j > 3 || j < 1)
+    {
+        playMove(board, move);
+    }
+    if (board[i - 1][j - 1] == 'X' || board[i - 1][j - 1] == 'O')
     {
         cout << "You cannot play this move" << endl;
         getch();
@@ -91,24 +101,16 @@ void playMove(char board[][3], char move)
 bool check(char board[][3], char move)
 {
     int counter = 0;
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        if((board[i][0] == move && board[i][1] == move && board[i][2] == move) || (board[0][i] == move && board[1][i] == move && board[2][i] == move))
+        if ((board[i][0] == move && board[i][1] == move && board[i][2] == move) || (board[0][i] == move && board[1][i] == move && board[2][i] == move))
         {
             return true;
         }
-    }   
-    if((board[0][0] == move && board[1][1] == move && board[2][2] == move) || (board[0][2] == move && board[1][1] == move && board[2][0] == move))
+    }
+    if ((board[0][0] == move && board[1][1] == move && board[2][2] == move) || (board[0][2] == move && board[1][1] == move && board[2][0] == move))
     {
         return true;
     }
     return false;
-}
-
-void gotoxy(int x, int y)
-{
-    COORD c;
-    c.X = x;
-    c.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
