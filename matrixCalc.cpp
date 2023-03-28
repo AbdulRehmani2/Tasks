@@ -8,6 +8,7 @@ int operationMenu();
 void initializeMatrix(int matrix[][3]);
 void addMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3]);
 void subtractMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3]);
+void scalerProduct(int matrix[][3], int number);
 void showResult(int matrix[3][3]);
 
 int main()
@@ -35,6 +36,26 @@ int main()
             if(subChoice == 2)
             {
                 subtractMatrices(matrixA, matrixB, matrixC);
+            }
+            if(subChoice == 3)
+            {
+                char mat;
+                int number;
+                cout << "Which matrix do you want to use (A, B)";
+                cin >> mat;
+                if(mat == 'A')
+                {
+                    cout << "Enter the number : ";
+                    cin >> number;
+                    scalerProduct(matrixA, number);
+                }
+                else if(mat == 'B')
+                {
+                    cout << "Enter the number : ";
+                    cin >> number;
+                    scalerProduct(matrixB, number);
+                }
+                // scalerProduct(matrix)
             }
         }
     }
