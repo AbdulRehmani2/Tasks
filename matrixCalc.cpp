@@ -14,7 +14,7 @@ int multiply(int matrixA[3], int matrixB[][3], int col);
 void showResult(int matrix[3][3]);
 bool isDiagonal(int matrix[3][3]);
 void transpose(int matrix[3][3]);
-void printMatrix(int matrix[3][3]);
+bool isSymmetrix(int matrix[3][3]);
 
 int main()
 {
@@ -127,6 +127,33 @@ int main()
                 else if (mat == 'C')
                 {
                     transpose(matrixC);
+                }
+            }
+            else if (subChoice == 7)
+            {
+                char mat;
+                bool result;
+                cout << "Which matrix do you want to use (A, B, C) : ";
+                cin >> mat;
+                if (mat == 'A')
+                {
+                    result = isSymmetric(matrixA);
+                }
+                else if (mat == 'B')
+                {
+                    result = isSymmetric(matrixB);
+                }
+                else if (mat == 'C')
+                {
+                    result = isSymmetric(matrixC);
+                }
+                if (result == 0)
+                {
+                    cout << "Matrix is not diagonal" << endl;
+                }
+                else if (result == 1)
+                {
+                    cout << "Matrix is diagonal" << endl;
                 }
             }
         }
@@ -273,4 +300,28 @@ void transpose(int matrix[3][3])
             matrix[j][i] = tempMatrix[i][j];
         }
     }
+}
+
+bool isSymmetric(int matrix[3][3])
+{
+    int tempMatrix[3][3];
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            tempMatrix[i][j] = matrix[i][j];
+        }
+    }
+    transpose(matrix);
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if(tempMatrix[i][j] != matrix[i][j])
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
