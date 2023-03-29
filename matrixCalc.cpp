@@ -9,6 +9,8 @@ void initializeMatrix(int matrix[][3]);
 void addMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3]);
 void subtractMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3]);
 void scalerProduct(int matrix[][3], int number);
+void productMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3]);
+int multiply(int matrixA[3], int matrixB[][3], int col);
 void showResult(int matrix[3][3]);
 
 int main()
@@ -55,7 +57,10 @@ int main()
                     cin >> number;
                     scalerProduct(matrixB, number);
                 }
-                // scalerProduct(matrix)
+            }
+            if(subChoice == 4)
+            {
+                productMatrices(matrixA, matrixB, matrixC);
             }
         }
     }
@@ -133,6 +138,7 @@ void scalerProduct(int matrix[][3], int number)
     showResult(matrix);
 }
 
+
 void showResult(int matrix[3][3])
 {
     for(int i = 0; i < 3; i++)
@@ -144,4 +150,28 @@ void showResult(int matrix[3][3])
         cout << endl;
     }
     getch();
+}
+
+void productMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3])
+{
+    int result;
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            result = multiply(matrixA[i], matrixB, j);
+            matrixC[i][j] = result;
+        }
+    }
+    showResult(matrixC);
+}
+
+int multiply(int matrixA[3], int matrixB[][3], int col)
+{
+    int result = 0;
+    for(int i = 0; i < 3; i++)
+    {
+            result = result + matrixA[i] * matrixB[i][col];
+    }
+    return result;
 }
