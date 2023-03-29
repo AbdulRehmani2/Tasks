@@ -13,6 +13,7 @@ void productMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3]);
 int multiply(int matrixA[3], int matrixB[][3], int col);
 void showResult(int matrix[3][3]);
 bool isDiagonal(int matrix[3][3]);
+void transpose(int matrix[3][3]);
 
 int main()
 {
@@ -25,22 +26,22 @@ int main()
         {
             initializeMatrix(matrixA);
         } 
-        if(choice == 2)
+        else if(choice == 2)
         {
             initializeMatrix(matrixB);
         } 
-        if(choice == 3)
+        else if(choice == 3)
         {
             subChoice = operationMenu();
             if(subChoice == 1)
             {
                 addMatrices(matrixA, matrixB, matrixC);
             }
-            if(subChoice == 2)
+            else if(subChoice == 2)
             {
                 subtractMatrices(matrixA, matrixB, matrixC);
             }
-            if(subChoice == 3)
+            else if(subChoice == 3)
             {
                 char mat;
                 int number;
@@ -59,11 +60,11 @@ int main()
                     scalerProduct(matrixB, number);
                 }
             }
-            if(subChoice == 4)
+            else if(subChoice == 4)
             {
                 productMatrices(matrixA, matrixB, matrixC);
             }
-            if(subChoice == 5)
+            else if(subChoice == 5)
             {
                 char mat;
                 bool result;
@@ -88,6 +89,25 @@ int main()
                 else if(result == 1)
                 {
                     cout << "Matrix is diagonal" << endl;
+                }
+            }
+            else if(subChoice == 6)
+            {
+                char mat;
+                bool result;
+                cout << "Which matrix do you want to use (A, B, C) : ";
+                cin >> mat;
+                if(mat == 'A')
+                {
+                    transpose(matrixA);
+                }
+                else if(mat == 'B')
+                {
+                    transpose(matrixB);
+                }
+                else if(mat == 'C')
+                {
+                    transpose(matrixC);
                 }
             }
         }
@@ -217,4 +237,23 @@ bool isDiagonal(int matrix[3][3])
         }
     }
     return true;
+}
+
+void transpose(int matrix[3][3])
+{
+    int tempMatrix[3][3];
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            tempMatrix[i][j] = matrix[i][j];
+        }
+    }
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            matrix[j][i] = tempMatrix[i][j];
+        }
+    }
 }
