@@ -12,6 +12,7 @@ void scalerProduct(int matrix[][3], int number);
 void productMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3]);
 int multiply(int matrixA[3], int matrixB[][3], int col);
 void showResult(int matrix[3][3]);
+bool isDiagonal(int matrix[3][3]);
 
 int main()
 {
@@ -43,7 +44,7 @@ int main()
             {
                 char mat;
                 int number;
-                cout << "Which matrix do you want to use (A, B)";
+                cout << "Which matrix do you want to use (A, B) : ";
                 cin >> mat;
                 if(mat == 'A')
                 {
@@ -61,6 +62,33 @@ int main()
             if(subChoice == 4)
             {
                 productMatrices(matrixA, matrixB, matrixC);
+            }
+            if(subChoice == 5)
+            {
+                char mat;
+                bool result;
+                cout << "Which matrix do you want to use (A, B, C) : ";
+                cin >> mat;
+                if(mat == 'A')
+                {
+                    result = isDiagonal(matrixA);
+                }
+                else if(mat == 'B')
+                {
+                    result = isDiagonal(matrixB);
+                }
+                else if(mat == 'C')
+                {
+                    result = isDiagonal(matrixC);
+                }
+                if(result == 0)
+                {
+                    cout << "Matrix is not diagonal" << endl;
+                }
+                else if(result == 1)
+                {
+                    cout << "Matrix is diagonal" << endl;
+                }
             }
         }
     }
@@ -174,4 +202,19 @@ int multiply(int matrixA[3], int matrixB[][3], int col)
             result = result + matrixA[i] * matrixB[i][col];
     }
     return result;
+}
+
+bool isDiagonal(int matrix[3][3])
+{
+    for(int i = 0; i < 3; i++) 
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            if(i != j && matrix[i][j] != 0)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
