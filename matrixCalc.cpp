@@ -14,112 +14,130 @@ int multiply(int matrixA[3], int matrixB[][3], int col);
 void showResult(int matrix[3][3]);
 bool isDiagonal(int matrix[3][3]);
 void transpose(int matrix[3][3]);
+void printMatrix(int matrix[3][3]);
 
 int main()
 {
     int choice, subChoice;
     int matrixA[3][3], matrixB[3][3], matrixC[3][3];
-    while(true)
+    while (true)
     {
         choice = menu();
-        if(choice == 1)
+        if (choice == 1)
         {
             initializeMatrix(matrixA);
-        } 
-        else if(choice == 2)
+        }
+        else if (choice == 2)
         {
             initializeMatrix(matrixB);
-        } 
-        else if(choice == 3)
+        }
+        else if (choice == 4)
+        {
+            char mat;
+            cout << "Which matrix do you want to print (A, B, C) : ";
+            cin >> mat;
+            if (mat == 'A')
+            {
+                showResult(matrixA);
+            }
+            else if (mat == 'B')
+            {
+                showResult(matrixB);
+            }
+            else if (mat == 'C')
+            {
+                showResult(matrixC);
+            }
+        }
+        else if (choice == 3)
         {
             subChoice = operationMenu();
-            if(subChoice == 1)
+            if (subChoice == 1)
             {
                 addMatrices(matrixA, matrixB, matrixC);
             }
-            else if(subChoice == 2)
+            else if (subChoice == 2)
             {
                 subtractMatrices(matrixA, matrixB, matrixC);
             }
-            else if(subChoice == 3)
+            else if (subChoice == 3)
             {
                 char mat;
                 int number;
                 cout << "Which matrix do you want to use (A, B) : ";
                 cin >> mat;
-                if(mat == 'A')
+                if (mat == 'A')
                 {
                     cout << "Enter the number : ";
                     cin >> number;
                     scalerProduct(matrixA, number);
                 }
-                else if(mat == 'B')
+                else if (mat == 'B')
                 {
                     cout << "Enter the number : ";
                     cin >> number;
                     scalerProduct(matrixB, number);
                 }
             }
-            else if(subChoice == 4)
+            else if (subChoice == 4)
             {
                 productMatrices(matrixA, matrixB, matrixC);
             }
-            else if(subChoice == 5)
+            else if (subChoice == 5)
             {
                 char mat;
                 bool result;
                 cout << "Which matrix do you want to use (A, B, C) : ";
                 cin >> mat;
-                if(mat == 'A')
+                if (mat == 'A')
                 {
                     result = isDiagonal(matrixA);
                 }
-                else if(mat == 'B')
+                else if (mat == 'B')
                 {
                     result = isDiagonal(matrixB);
                 }
-                else if(mat == 'C')
+                else if (mat == 'C')
                 {
                     result = isDiagonal(matrixC);
                 }
-                if(result == 0)
+                if (result == 0)
                 {
                     cout << "Matrix is not diagonal" << endl;
                 }
-                else if(result == 1)
+                else if (result == 1)
                 {
                     cout << "Matrix is diagonal" << endl;
                 }
             }
-            else if(subChoice == 6)
+            else if (subChoice == 6)
             {
                 char mat;
                 bool result;
                 cout << "Which matrix do you want to use (A, B, C) : ";
                 cin >> mat;
-                if(mat == 'A')
+                if (mat == 'A')
                 {
                     transpose(matrixA);
                 }
-                else if(mat == 'B')
+                else if (mat == 'B')
                 {
                     transpose(matrixB);
                 }
-                else if(mat == 'C')
+                else if (mat == 'C')
                 {
                     transpose(matrixC);
                 }
             }
         }
     }
-
 }
 
 void initializeMatrix(int matrix[][3])
 {
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
             cout << "Enter the element : ";
             cin >> matrix[i][j];
@@ -152,9 +170,9 @@ int operationMenu()
 
 void addMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3])
 {
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
             matrixC[i][j] = matrixA[i][j] + matrixB[i][j];
         }
@@ -164,9 +182,9 @@ void addMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3])
 
 void subtractMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3])
 {
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
             matrixC[i][j] = matrixA[i][j] - matrixB[i][j];
         }
@@ -176,9 +194,9 @@ void subtractMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3])
 
 void scalerProduct(int matrix[][3], int number)
 {
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
             matrix[i][j] = number * matrix[i][j];
         }
@@ -186,12 +204,11 @@ void scalerProduct(int matrix[][3], int number)
     showResult(matrix);
 }
 
-
 void showResult(int matrix[3][3])
 {
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
             cout << matrix[i][j] << " ";
         }
@@ -203,9 +220,9 @@ void showResult(int matrix[3][3])
 void productMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3])
 {
     int result;
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
             result = multiply(matrixA[i], matrixB, j);
             matrixC[i][j] = result;
@@ -217,20 +234,20 @@ void productMatrices(int matrixA[][3], int matrixB[][3], int matrixC[][3])
 int multiply(int matrixA[3], int matrixB[][3], int col)
 {
     int result = 0;
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-            result = result + matrixA[i] * matrixB[i][col];
+        result = result + matrixA[i] * matrixB[i][col];
     }
     return result;
 }
 
 bool isDiagonal(int matrix[3][3])
 {
-    for(int i = 0; i < 3; i++) 
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
-            if(i != j && matrix[i][j] != 0)
+            if (i != j && matrix[i][j] != 0)
             {
                 return false;
             }
@@ -242,16 +259,16 @@ bool isDiagonal(int matrix[3][3])
 void transpose(int matrix[3][3])
 {
     int tempMatrix[3][3];
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
             tempMatrix[i][j] = matrix[i][j];
         }
     }
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; j++)
         {
             matrix[j][i] = tempMatrix[i][j];
         }
