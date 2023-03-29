@@ -14,7 +14,7 @@ int multiply(int matrixA[3], int matrixB[][3], int col);
 void showResult(int matrix[3][3]);
 bool isDiagonal(int matrix[3][3]);
 void transpose(int matrix[3][3]);
-bool isSymmetrix(int matrix[3][3]);
+bool isSymmetric(int matrix[3][3]);
 
 int main()
 {
@@ -109,6 +109,7 @@ int main()
                 {
                     cout << "Matrix is diagonal" << endl;
                 }
+                getch();
             }
             else if (subChoice == 6)
             {
@@ -149,12 +150,13 @@ int main()
                 }
                 if (result == 0)
                 {
-                    cout << "Matrix is not diagonal" << endl;
+                    cout << "Matrix is not symmetrical" << endl;
                 }
                 else if (result == 1)
                 {
-                    cout << "Matrix is diagonal" << endl;
+                    cout << "Matrix is symmetrical" << endl;
                 }
+                getch();
             }
         }
     }
@@ -178,6 +180,7 @@ int menu()
     cout << "1. Enter the elements of first matrix" << endl;
     cout << "2. Enter the elements of the second matrix" << endl;
     cout << "3. Operations" << endl;
+    cout << "4. Print Matrix" << endl;
     cin >> choice;
     return choice;
 }
@@ -189,8 +192,9 @@ int operationMenu()
     cout << "2. Subtract the matrices" << endl;
     cout << "3. Scalar Product" << endl;
     cout << "4. Multiply the matrices" << endl;
-    cout << "5. Check scalar matrix " << endl;
-    cout << "6. Check identity matrix" << endl;
+    cout << "5. Check Diagonal Matrix" << endl;
+    cout << "6. Transpose of Matrix" << endl;
+    cout << "7. Check Symmetrical Matrix" << endl;
     cin >> choice;
     return choice;
 }
